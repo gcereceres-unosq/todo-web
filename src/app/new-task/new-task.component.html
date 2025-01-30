@@ -1,16 +1,16 @@
 <h3>New Task:</h3>
 <p>
   <label>Title:</label>
-  <input type="text" />
+  <input type="text" [(ngModel)]="newTask.title"/>
 </p>
 <p>
   <label for="">Task:</label>
-  <textarea name="" id=""></textarea>
+  <textarea name="" id=""[(ngModel)]="newTask.content"></textarea>
 </p>
 <p>
     <label for="">Due Date:</label>
-    <input type="text" name="" id="">
+    <input type="text" name="" id=""[(ngModel)]="newTask.dueDate">
   </p>
 <p>
-    <input type="button" value="Save">
+    <button (click)="onSaveTask(newTask)">Save</button>
 </p>

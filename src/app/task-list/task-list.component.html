@@ -1,5 +1,6 @@
 <h3>To Do:</h3>
 <ul>
-  <li>Front End</li>
-  <li>Back End</li>
+  @for (task of tasks; track task.id) {
+  <li><app-task [task]="task" /></li>
+  }
 </ul>
