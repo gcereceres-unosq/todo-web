@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
+import { NewTask } from '../../models/newTask';
+import { NewTaskComponent } from '../new-task/new-task.component';
 
 @Component({
   selector: 'app-task-list',
-  imports: [TaskComponent],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
+
+  isAddingTask = false;
 
   tasks = [
     {
@@ -32,4 +36,8 @@ export class TaskListComponent {
       completed: false
     }
   ]
+
+  onStartAddingTask() {
+    this.isAddingTask = true;
+  }
 }
