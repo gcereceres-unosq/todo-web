@@ -1,23 +1,22 @@
-<div class="backdrop">
-  <dialog open>
-    <h2>Create Task</h2>
-    <form>
-      <p>
-        <label for="title"></label>
-        <input type="text" id="title" name="title" />
-      </p>
-      <p>
-        <label for="content"></label>
-        <textarea name="content" id="content" rows="5"></textarea>
-      </p>
-      <p>
-        <label for="due-date"></label>
-        <input type="date" id="due-date" name="due-date" />
-      </p>
-      <p class="actions">
-        <button type="button">Cancel</button>
-        <button type="submit">Submit</button>
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Create Task</h2>
+  <form (submit)="onSubmit()">
+    <p>
+      <label for="title"></label>
+      <input type="text" id="title" name="title" [(ngModel)]="newTask.title"/>
     </p>
-    </form>
-  </dialog>
-</div>
+    <p>
+      <label for="content"></label>
+      <textarea name="content" id="content" rows="5" [(ngModel)]="newTask.content"></textarea>
+    </p>
+    <p>
+      <label for="due-date"></label>
+      <input type="date" id="due-date" name="due-date" [(ngModel)]="newTask.dueDate"/>
+    </p>
+    <p class="actions">
+      <button type="button" (click)="onCancel()">Cancel</button>
+      <button type="submit">Submit</button>
+    </p>
+  </form>
+</dialog>

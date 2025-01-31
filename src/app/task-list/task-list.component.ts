@@ -40,4 +40,20 @@ export class TaskListComponent {
   onStartAddingTask() {
     this.isAddingTask = true;
   }
+
+  onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+
+  onAddTask(taskData: NewTask) {
+    this.tasks.unshift({
+      id: new Date().getTime(),
+      title: taskData.title,
+      content: taskData.content,
+      dueDate: taskData.dueDate,
+      completed: false
+    });
+
+    this.isAddingTask = false;
+  }
 }
