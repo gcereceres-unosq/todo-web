@@ -1,12 +1,12 @@
 @if(isAddingTask){
-    <app-new-task (cancel)="onCancelAddTask()" (add)="onAddTask($event)"></app-new-task>
+    <app-new-task (close)="onCloseAddTask()"></app-new-task>
 }
 <header>
   <menu><button (click)="onStartAddingTask()">Add Task</button></menu>
 </header>
 <h3>To Do:</h3>
 <ul>
-  @for (task of tasks; track task.id) {
+  @for (task of getTasks(); track task.id) {
     <li>
         <app-task [task]="task" />
     </li>

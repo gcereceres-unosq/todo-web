@@ -1,6 +1,7 @@
-import { Component, EventEmitter, output, Output } from '@angular/core';
+import { Component, EventEmitter, inject, output, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NewTask } from '../../models/newTask';
+import { TaskListService } from '../task-list/task-list.service';
 
 @Component({
   selector: 'app-new-task',
@@ -9,25 +10,27 @@ import { NewTask } from '../../models/newTask';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-  @Output() cancel = new EventEmitter<void>();
-  @Output() add = new EventEmitter<NewTask>();
+  @Output() close = new EventEmitter<void>();
 
   newTask: NewTask = this.resetTask();
+
+  private tasklistService = inject(TaskListService);
 
   onSaveTask(task: NewTask) {
     console.log(this.newTask);
     this.newTask = this.resetTask();
   }
 
-  onCancel(){
-    this.cancel.emit();
+  onCancel() {
+    this.close.emit();
   }
 
-  onSubmit(){
-    this.add.emit(this.newTask);
+  onSubmit() {
+    this.tasklistService.addTask(this.newTask);
+    this.close.emit();
   }
 
-  resetTask(){
+  resetTask() {
     return {
       title: "",
       content: "",
