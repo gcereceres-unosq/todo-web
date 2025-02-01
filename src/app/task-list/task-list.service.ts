@@ -44,7 +44,7 @@ export class TaskListService {
         });
     }
 
-    completeTask(id: number) {
-
+    completeTask(task: Task) {
+        task.completed = true;
     }
 }
