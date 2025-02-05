@@ -2,7 +2,7 @@
   <h2>{{ task.title }}</h2>
   <time datetime="">{{ task.dueDate | date : "shortDate" }}</time>
   <p>{{ task.content }}</p>
-  <p>Completed: {{ task.completed }}</p>
+  <!-- <p>Completed: {{ task.taskStatus }}</p> -->
   <p class="actions">
     <button (click)="onCompleteTask()">Complete</button>
   </p>

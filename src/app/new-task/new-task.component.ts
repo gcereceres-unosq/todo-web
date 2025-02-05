@@ -11,6 +11,7 @@ import { TaskListService } from '../task-list/task-list.service';
 })
 export class NewTaskComponent {
   @Output() close = new EventEmitter<void>();
+  @Output() taskCreate = new EventEmitter<void>();
 
   newTask: NewTask = this.resetTask();
 
@@ -26,7 +27,8 @@ export class NewTaskComponent {
   }
 
   onSubmit() {
-    this.tasklistService.addTask(this.newTask);
+    this.tasklistService.addTask(this.newTask).subscribe();
+    this.taskCreate.emit();
     this.close.emit();
   }
 

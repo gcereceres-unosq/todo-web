@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
 import { NewTask } from '../../models/newTask';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { TaskListService } from './task-list.service';
+import { reduce } from "rxjs";
+import { Task } from '../../models/task';
 
 @Component({
   selector: 'app-task-list',
@@ -10,11 +12,19 @@ import { TaskListService } from './task-list.service';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
+
+  constructor(private taskListService: TaskListService) { }
+
+  public taskList!: Task[];
+
+  ngOnInit() {
+    this.getTasks();
+  }
 
   isAddingTask = false;
 
-  constructor(private taskListService: TaskListService) { }
+
 
   onStartAddingTask() {
     this.isAddingTask = true;
@@ -24,7 +34,8 @@ export class TaskListComponent {
     this.isAddingTask = false;
   }
 
-  getTasks(){
-    return this.taskListService.getTasks();
+  getTasks() {
+    this.taskListService.fetchTaskList()
+      .subscribe(data => this.taskList = data);
   }
 }

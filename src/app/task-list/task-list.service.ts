@@ -1,9 +1,13 @@
 import { Task } from "../../models/task";
 import { NewTask } from "../../models/newTask";
-import { Injectable } from "@angular/core";
+import { inject, Injectable, Signal, signal } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { catchError, Observable, reduce } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class TaskListService {
+
+    private httpClient = inject(HttpClient);
 
     private tasks = [
         {
@@ -33,18 +37,19 @@ export class TaskListService {
         return this.tasks;
     }
 
-    addTask(newTask: NewTask) {
+    fetchTaskList() {
+        return this.httpClient.get<Task[]>('https://localhost:7207/api/todo');
+    }
 
-        this.tasks.unshift({
-            id: new Date().getTime(),
-            title: newTask.title,
-            content: newTask.content,
-            dueDate: newTask.dueDate,
-            completed: false
-        });
+    addTask(newTask: NewTask): Observable<Task> {
+        return this.httpClient.post<Task>('https://localhost:7207/api/todo', newTask);
     }
 
     completeTask(task: Task) {
-        task.completed = true;
+        // task.completed = true;
+    }
+
+    handleError(message: string, obj: any) {
+        console.log(`Error Message: ${message} for: ${obj}`);
     }
 }

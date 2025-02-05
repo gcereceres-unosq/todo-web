@@ -3,6 +3,6 @@ export interface Task {
     title: string;
     content: string;
     dueDate: Date;
-    completed: boolean;
+    // taskStatus: number;
 }
 
