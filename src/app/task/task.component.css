@@ -1,0 +1,125 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-item {
+  margin-right: 10px;
+  background-color: #d8d7d7;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.selected {
+  color: white;
+  /* Color on hover */
+  background-color: black;
+}
+
+.flex-item:hover {
+  color: white;
+  /* Color on hover */
+  background-color: black;
+  /* Background color on hover */
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  transition: transform 0.2s;
+  min-width: 400px;
+}
+
+.task-card:hover {
+  transform: scale(1.05);
+}
+
+.actions {
+  text-align: right; /* Optional: centers the buttons */
+}
+
+.actions button {
+  display: inline-block;
+  margin: 5px; /* Optional: adds space between buttons */
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}
+
+.delete-button i {
+  font-size: 16px;
+}
+
+h2 {
+  margin: 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #ab9ac0;
+}
+
+input,
+textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.15rem 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+}
+
+.actions {
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  padding: 0.35rem 1.25rem;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+
+button[type="submit"] {
+  /* background-color: #9c73ca; */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:active {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  dialog {
+    padding: 2rem;
+  }
+}

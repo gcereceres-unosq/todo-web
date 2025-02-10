@@ -1,0 +1,24 @@
+.status {
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    border-radius: 12px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    font-size: x-small;
+  }
+
+  .overdue {
+    background-color: #fa5252; /* Red background */
+  }
+
+  .todo {
+    background-color: #4d59fa; /* Blue background */
+  }
+
+  .inprogress {
+    background-color: #d6ad3d; /* Yellow background */
+  }
+
+  .done {
+    background-color: #4CAF50; /* Green background */
+  }
