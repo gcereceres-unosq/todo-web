@@ -4,15 +4,22 @@
   <form (submit)="onSubmit()">
     <p>
       <label for="title"></label>
-      <input type="text" id="title" name="title" [(ngModel)]="newTask.title"/>
+      <input type="text" id="title" name="title" required [(ngModel)]="newTask.title" #name="ngModel"/>
+      @if(name.invalid && (name.dirty || name.touched)){
+        <div class="alert">
+        @if(name.errors?.['required']){
+          <div>Name is required</div>
+        }
+      </div>
+      }
     </p>
     <p>
       <label for="content"></label>
-      <textarea name="content" id="content" rows="5" [(ngModel)]="newTask.content"></textarea>
+      <textarea name="content" id="content" rows="5" [(ngModel)]="newTask.content" #name="ngModel" maxlength="250"></textarea>
     </p>
     <p>
       <label for="due-date"></label>
-      <input type="date" id="due-date" name="due-date" [(ngModel)]="newTask.dueDate"/>
+      <input type="date" id="due-date" name="due-date" [min]="today | date:'yyyy-MM-dd'" [(ngModel)]="newTask.dueDate"/>
     </p>
     <p class="actions">
       <button type="button" (click)="onCancel()">Cancel</button>

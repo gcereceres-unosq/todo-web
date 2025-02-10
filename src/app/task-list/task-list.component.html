@@ -4,11 +4,10 @@
 <header>
   <menu><button (click)="onStartAddingTask()">Add Task</button></menu>
 </header>
-<h3>To Do:</h3>
 <ul>
   @for (task of taskList; track task.id) {
     <li>
-        <app-task [task]="task" />
+        <app-task (taskDeleted)="getTasks()" (taskUpdated)="getTasks()" [task]="task" />
     </li>
   }
 </ul>

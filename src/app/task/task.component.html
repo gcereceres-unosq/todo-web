@@ -1,9 +1,50 @@
-<article>
+<article class="task-card">
+  @if(!isOnEditMode){
   <h2>{{ task.title }}</h2>
   <time datetime="">{{ task.dueDate | date : "shortDate" }}</time>
   <p>{{ task.content }}</p>
-  <!-- <p>Completed: {{ task.taskStatus }}</p> -->
+  <app-task-status [selectedTaskStatus]="task.taskStatus"></app-task-status>
   <p class="actions">
-    <button (click)="onCompleteTask()">Complete</button>
+    <button (click)="onDeleteTask()" class="delete-button"><i class="fas fa-trash-alt"></i>Delete</button><button (click)="toggleEditMode()">Edit</button>
   </p>
+  } @if(isOnEditMode) {
+  <h2>Edit Task</h2>
+  <form (submit)="onSubmit()">
+    <p>
+      <label for="title"></label>
+      <input type="text" id="title" name="title" [(ngModel)]="editedTask.title" />
+    </p>
+    <p>
+      <label for="content"></label>
+      <textarea
+        name="content"
+        id="content"
+        rows="5"
+        [(ngModel)]="editedTask.content"
+      ></textarea>
+    </p>
+    <p>
+      <label for="due-date"></label>
+      <input
+        type="date"
+        id="due-date"
+        name="due-date"
+        [min]="today | date:'yyyy-MM-dd'"
+        [ngModel]="editedTask.dueDate | date:'yyyy-MM-dd'"
+        (ngModelChange)="editedTask.dueDate = $event"
+      />
+    </p>
+
+    <div class="flex-container">
+      <div class="flex-item" [ngClass]="{'selected': this.editedTask.taskStatus === 0}" (click)="onStatusClicked(0)">To Do</div>
+      <div class="flex-item" [ngClass]="{'selected': this.editedTask.taskStatus === 1}" (click)="onStatusClicked(1)">In Progress</div>
+      <div class="flex-item" [ngClass]="{'selected': this.editedTask.taskStatus === 2}" (click)="onStatusClicked(2)">Done</div>
+    </div>
+
+    <p class="actions">
+      <button type="button" (click)="onCancel()">Cancel</button>
+      <button type="submit">Submit</button>
+    </p>
+  </form>
+  }
 </article>

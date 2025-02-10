@@ -3,6 +3,14 @@ export interface Task {
     title: string;
     content: string;
     dueDate: Date;
-    // taskStatus: number;
+    taskStatus: TaskStatus;
+}
+
+
+export enum TaskStatus {
+    ToDo,
+    InProgress,
+    Done,
+    Overdue
 }
 

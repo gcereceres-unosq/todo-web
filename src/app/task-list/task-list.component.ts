@@ -36,6 +36,6 @@ export class TaskListComponent implements OnInit {
 
   getTasks() {
     this.taskListService.fetchTaskList()
-      .subscribe(data => this.taskList = data);
+      .subscribe(data => {this.taskList = data; console.log(this.taskList)});
   }
 }
