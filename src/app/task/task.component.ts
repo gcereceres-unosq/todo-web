@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, output, Output } from '@angular/core';
+import { Component, inject, Input, output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Task, TaskStatus } from '../../models/task';
 import { TaskListService } from '../task-list/task-list.service';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
-  @Output() taskUpdated = new EventEmitter<void>();
+  updated = output({alias: 'taskDeleted'});
   deleted = output({alias: 'taskDeleted'});
   private taskListService = inject(TaskListService);
   public isOnEditMode: boolean = false;
@@ -54,7 +54,7 @@ export class TaskComponent {
 
   onSubmit() {
     this.taskListService.updateTask(this.editedTask).subscribe({
-      complete: () => {this.taskUpdated.emit(); this.toggleEditMode(); }
+      complete: () => {this.updated.emit(); this.toggleEditMode(); }
     })
   }
 
